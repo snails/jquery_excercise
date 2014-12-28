@@ -1,0 +1,29 @@
+<html>
+<head>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.9.js">
+<script type="text/javascript">
+$(document).ready(function(){
+  $("li").toggle(
+              function()
+              {
+                  $(this).css({ "list-style-type": "disc", "color": "blue" });
+              },
+              function()
+              {
+                  $(this).css({ "list-style-type": "square", "color": "red" });
+              },
+              function()
+              {
+                  $(this).css({ "list-style-type": "none", "color": "" });
+              }
+  );
+});
+</script>
+</head>
+<body>
+<ul>
+<li id="test">hello</li>
+</ul>
+</body>
+</html>
+

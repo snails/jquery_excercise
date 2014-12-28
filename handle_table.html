@@ -1,0 +1,100 @@
+<!DOCTYPE html>  
+
+<html>  
+  <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>Jquery - Table Editor</title>  
+    <script src="js/jquery-1.11.2.js"></script>  
+  </head>  
+  <body>  
+    <h3><center>添加用户</center></h3>  
+    <br />  
+    <center>  
+      姓名：<input type="text" id="name" name="name" />    
+      邮箱：<input type="text" id="mail" name="mail" />    
+      电话：<input type="text" id="tel" name="tel" />    
+      <br />
+      <button id="adduser">提交</button>  
+      <input type="reset" value="重置" />  
+
+      <br /><br />  
+
+      <hr />  
+      <br /><br />  
+
+      <table id="usertable" border="1" cellpadding="5" cellspacing="0">  
+        <tbody>  
+          <tr>  
+            <th>姓名</th>  
+            <th>邮箱</th>  
+            <th>电话</th>  
+            <th>操作</th>  
+          </tr>  
+        </tbody>  
+
+      </table>  
+    </center>  
+
+
+    <script language="JavaScript">  
+
+      $("#adduser").click(function(){  
+
+        //获取本的值  
+        var username=$("#name").val();  
+        var email=$("#mail").val();  
+        var tel=$("#tel").val();  
+
+        //创建<tr>  
+        var $nametd=$("<td/>");  
+        $nametd.text(username);  
+        var $emailtd=$("<td/>");  
+        $emailtd.text(email);   
+        var $teltd=$("<td/>");  
+        $teltd.text(tel);  
+
+        var $a=$("<a></a>");  
+        $a.attr("href","userDemo.html?id="+username);  
+        $a.text("删除");  
+
+        //把<a>标签增加到td里  
+        var $atd=$("<td/>");  
+        $atd.append($a);  
+
+        //创建tr,   在tr上添加td  
+        var $tr=$("<tr/>");  
+        $tr.append($nametd);  
+        $tr.append($emailtd);  
+        $tr.append($teltd);  
+        $tr.append($atd);  
+
+        //创建<table>。   在table上添加<tr>   
+        //获取table下的所有子元素，eq(0),是获取第一个  
+        $("#usertable").children().eq(0).append($tr);  
+
+        //删除  
+        $a.click(function(){  
+          return delTr($a);//调用函数  
+        });  
+      });  
+
+
+
+      //删除tr方法  
+      function delTr($obj){  
+        //获取要删除用户的名字  
+        var nameval=$obj.parent().parent().children().eq(0).text();  
+        var flag=window.confirm("你真的要删除["+nameval+"]这个用户吗");  
+        if(!flag){  
+          return false;  
+        }  
+
+        ///删除tr  
+        $obj.parent().parent().remove();  
+
+        //return true;///执行href的地址  
+        return false;  
+      }  
+    </script>  
+  </body>  
+</html>  

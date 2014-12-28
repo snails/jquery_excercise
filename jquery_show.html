@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jquery - Start Animation</title>
+  <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function()
+        {
+            //动画速度
+            var speed = 500;
+
+            //绑定事件处理
+            $("#btnShow").click(function(event)
+            {
+                //取消事件冒泡
+                event.stopPropagation();
+                //设置弹出层位置
+                var offset = $(event.target).offset();
+                $("#divPop").css({ top: offset.top + $(event.target).height() + "px", left: offset.left });
+                //动画显示
+                <!-- $("#divPop").show(speed); -->
+                $("#divPop").toggle(speed);
+
+            });
+            //单击空白区域隐藏弹出层
+            $(document).click(function(event) { $("#divPop").hide(speed) });
+            //单击弹出层则自身隐藏
+            $("#divPop").click(function(event) { $("#divPop").hide(speed) });
+        });
+  </script>
+</head>
+<body>
+  <div>
+    <br /><br /><br />
+    <button id="btnShow">Show Hit Words</button>
+  </div>
+  <!-- Pop -->
+  <div id="divPop" style="background-color: #f0f0f0; border: solid 1px #000000; position: absolute; display: none; width: 300px; height: 100px;">
+    <div style="text-align: center;">Pop</div>
+  </div>
+</body>
+</html>

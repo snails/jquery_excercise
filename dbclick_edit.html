@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Double Click Edit</title>
+  <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+  <style type="text/css" media="all">
+    .canEdit {
+      display: block;
+      border: solid 1px #f0f;
+    }
+  </style>
+</head>
+<body>
+  <div class="canEdit">
+  Hello Me
+  </div>
+
+  <script type="text/javascript" charset="utf-8">
+
+    function saveText(obj){
+      var text = $(obj).val();
+      $(obj).parent().empty().html(text);
+    }
+
+    $(document).ready(function(){
+      $(".canEdit").bind("dblclick", function(event){
+        event.preventDefault();
+        var old = $(this).html();
+        var input = '<input type="text" onblur="saveText(this)" value="' + old + '"/>'
+        $(this).empty().html(input);
+      })
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>延迟可确定</title>
+  <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+</head>
+<body>
+  <form action="#" method="post">
+    <input type="submit" id="btnSubmit" value="确定">
+  </form>
+  <script type="text/javascript" charset="utf-8">
+    var timeOut = 1000;
+    var count = 10;
+    var timeOut;
+    var btnSubmit = $("#btnSubmit");
+
+    function timer(){
+      if(count == 0){
+        btnSubmit.attr("disabled", false);
+        btnSubmit.val("确定");
+        clearTimeout(timeOut);
+      }else{
+        count--;
+        btnSubmit.attr("disabled", "disabled");
+        btnSubmit.val("确" + count.toString() + "定");
+        timeOut = setTimeout(timer, 1000);
+      }
+    }
+
+    $(document).ready(function(){
+      btnSubmit.attr("disabled", "disabled");
+      btnSubmit.val("确" + count.toString() + "定");
+      setTimeout(timer, 1000);
+    });
+  </script>
+</body>
+</html>
